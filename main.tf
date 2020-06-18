@@ -1,5 +1,6 @@
 provider "google" {
-  credentials = file("../optical-pillar-279806-8a8df30de4a6.json")
+#  credentials = file("../optical-pillar-279806-8a8df30de4a6.json")
+  credentials = var.secret
   project = "optical-pillar-279806"
   region  = "us-central1"
   zone    = "us-central1-c"
