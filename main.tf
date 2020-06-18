@@ -61,6 +61,17 @@ resource "google_compute_firewall" "default" {
  }
 }
 
+terraform {
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "technical-assignment"
+
+    workspaces {
+      name = "gcp-terraform"
+    }
+  }
+}
+
 output "ip" {
  value = google_compute_instance.default.network_interface.0.access_config.0.nat_ip
 }
