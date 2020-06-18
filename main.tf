@@ -36,8 +36,10 @@ data "template_file" "default" {
 
 resource "local_file" "app" {
   content = data.template_file.default.rendered
+#  content = "test"
   filename = "/home/raymond/app.py"
 }
+
 
 resource "google_compute_network" "vpc_network" {
   name                    = "terraform-network"
