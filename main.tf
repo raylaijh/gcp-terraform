@@ -1,6 +1,6 @@
 provider "google" {
 #  credentials = file("../optical-pillar-279806-8a8df30de4a6.json")
-  credentials = local.secret
+  credentials = var.secret
   project = "optical-pillar-279806"
   region  = "us-central1"
   zone    = "us-central1-c"
@@ -41,7 +41,10 @@ resource "local_file" "app" {
   filename = "/home/raymond/app.py"
 }
 
+variable "secret"
+{
 
+}
 resource "google_compute_network" "vpc_network" {
   name                    = "terraform-network"
   auto_create_subnetworks = "true"
