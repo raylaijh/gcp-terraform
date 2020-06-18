@@ -41,10 +41,10 @@ resource "local_file" "app" {
   filename = "/home/raymond/app.py"
 }
 
-variable "secret"
-{
-
-}
+variable "secret" {
+  default = []
+   
+          }
 resource "google_compute_network" "vpc_network" {
   name                    = "terraform-network"
   auto_create_subnetworks = "true"
