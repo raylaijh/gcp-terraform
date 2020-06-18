@@ -52,7 +52,7 @@ resource "google_compute_network" "vpc_network" {
 }
 
 ## Test for qa ###
-resource "google_compute_network" "vpc_network" {
+resource "google_compute_network" "vpc_network2" {
   name                    = "terraform-network2"
   auto_create_subnetworks = "true"
 }
