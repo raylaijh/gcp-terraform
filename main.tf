@@ -51,6 +51,14 @@ resource "google_compute_network" "vpc_network" {
   auto_create_subnetworks = "true"
 }
 
+## Test for qa ###
+resource "google_compute_network" "vpc_network" {
+  name                    = "terraform-network2"
+  auto_create_subnetworks = "true"
+}
+
+
+
 resource "google_compute_firewall" "default" {
  name    = "flask-app-firewall"
  network = "default"
