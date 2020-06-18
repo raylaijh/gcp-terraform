@@ -22,7 +22,7 @@ metadata = {
     }
   }
  
-  metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync; pip install flask; python /home/raymond/app.py;}"
+  metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync; pip install flask;}"
   
   network_interface {
     # A default network is created for all GCP projects
@@ -36,11 +36,11 @@ data "template_file" "default" {
   template = file("app.py")
 }
 
-resource "local_file" "app" {
-  content = data.template_file.default.rendered
+#resource "local_file" "app" {
+#  content = data.template_file.default.rendered
 #  content = "test"
-  filename = "/home/raymond/app.py"
-}
+#  filename = "/home/raymond/app.py"
+#}
 
 variable "secret" {
   default = []
