@@ -32,9 +32,9 @@ metadata = {
   }
 }
 
-data "template_file" "default" {
-  template = file("app.py")
-}
+#data "template_file" "default" {
+#  template = file("app.py")
+#}
 
 #resource "local_file" "app" {
 #  content = data.template_file.default.rendered
