@@ -14,7 +14,7 @@ resource "google_compute_instance" "default" {
 
 metadata = {
 #   ssh-keys = "raymond:${file("~/.ssh/id_rsa.pub")}"
-   ssh-keys = "raymond:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCn9va9Zww/0e0bXXew0xYV9Cwd6vDFmswHMO5m/l6rtvimvWmyg2zmUl/M8Odv3va53UOfA72HuWYtp+6vjR7amklMwGQw5IUacRWEwPFTfSyYWxUAqYne0IcNYa9maQR9i6PZhUhcIHKQ2y2mt1DpDgx7OfX4dF6JdQgGFUVI0MqBfAO1D2fL0Nd5nMhRoV0grfNSCYWiCWIZT5icTBAHl2+LBJbPTQq4XWgMqihAA/t0TAW6TN8d2euVZEATUiSrWgt2AZvQfQS8nScgwPO5LpxGdEyxeHY0/iApXBLpyv+bA7RygONodcsvKrAKGQJ7T6vzeQYxAEKcsHWEIj1Z raymond@localhost.localdomain"
+   ssh-keys = "xxx"
 }
   boot_disk {
     initialize_params {
