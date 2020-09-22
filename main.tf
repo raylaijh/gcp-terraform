@@ -15,7 +15,7 @@ resource "google_compute_instance" "default" {
 
 metadata = {
 #   ssh-keys = "raymond:${file("~/.ssh/id_rsa.pub")}"
-   ssh-keys = "xxx"
+   ssh-keys = var.ssh
 }
   boot_disk {
     initialize_params {
@@ -35,12 +35,17 @@ metadata = {
 
 variable "secret" {
   default = []
-   
-          }
+}
 
-variable "instaance_count" {
+variable "instance_count" {
   default = "3"
 }
+
+variable "ssh" {
+  default = []
+
+}
+
 
 resource "google_compute_network" "vpc_network" {
   name                    = "terraform-network"
