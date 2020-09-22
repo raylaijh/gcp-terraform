@@ -7,7 +7,7 @@ provider "google" {
 }
 
 #
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "tfcb" {
   name         = "tfc4b-test"
   machine_type = "f1-micro"
   zone         = "asia-southeast1-a"
@@ -47,7 +47,7 @@ variable "ssh" {
 }
 
 
-resource "google_compute_network" "vpc_network" {
+resource "google_compute_network" "vpc_network_tfcb" {
   name                    = "terraform-network"
   auto_create_subnetworks = "true"
 }
@@ -59,7 +59,7 @@ resource "google_compute_network" "vpc_network" {
 #}
 
 
-resource "google_compute_firewall" "default" {
+resource "google_compute_firewall" "tfcb" {
  name    = "flask-app-firewall"
  network = "default"
 
