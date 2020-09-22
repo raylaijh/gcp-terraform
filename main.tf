@@ -67,10 +67,10 @@ resource "google_compute_firewall" "default" {
 terraform {
   backend "remote" {
     hostname = "app.terraform.io"
-    organization = "vault-raymond"
+    organization = "hashicorp-raymond-test"
 
     workspaces {
-      name = "gcp-vault"
+      name = "sentinel-test"
     }
   }
 }
