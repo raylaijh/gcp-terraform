@@ -1,16 +1,17 @@
 provider "google" {
 #  credentials = file("../optical-pillar-279806-8a8df30de4a6.json")
   credentials = var.secret
-  project = "optical-pillar-279806"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  project = "raymond-vault-test"
+  region  = "asia-southeast1"
+  zone    = "asia-southeast1-a"
 }
 
 #
 resource "google_compute_instance" "default" {
-  name         = "flask-vm"
+  name         = "vault"
   machine_type = "f1-micro"
-  zone         = "us-west1-a"
+  zone         = "asia-southeast1-a"
+  count        = "${var.instance_count}"
 
 metadata = {
 #   ssh-keys = "raymond:${file("~/.ssh/id_rsa.pub")}"
@@ -32,20 +33,15 @@ metadata = {
   }
 }
 
-#data "template_file" "default" {
-#  template = file("app.py")
-#}
-
-#resource "local_file" "app" {
-#  content = data.template_file.default.rendered
-#  content = "test"
-#  filename = "/home/raymond/app.py"
-#}
-
 variable "secret" {
   default = []
    
           }
+
+variable "instaance_count" {
+  default = "3"
+}
+
 resource "google_compute_network" "vpc_network" {
   name                    = "terraform-network"
   auto_create_subnetworks = "true"
@@ -71,10 +67,10 @@ resource "google_compute_firewall" "default" {
 terraform {
   backend "remote" {
     hostname = "app.terraform.io"
-    organization = "technical-assignment"
+    organization = "vault-raymond"
 
     workspaces {
-      name = "gcp-terraform"
+      name = "gcp-vault"
     }
   }
 }
