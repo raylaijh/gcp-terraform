@@ -1,14 +1,14 @@
 provider "google" {
 #  credentials = file("../optical-pillar-279806-8a8df30de4a6.json")
   credentials = var.secret
-  project = "raymond-vault-test"
+  project = "tfc4b-test"
   region  = "asia-southeast1"
   zone    = "asia-southeast1-a"
 }
 
 #
 resource "google_compute_instance" "default" {
-  name         = "vault"
+  name         = "tfc4b-test"
   machine_type = "f1-micro"
   zone         = "asia-southeast1-a"
   count        = "${var.instance_count}"
