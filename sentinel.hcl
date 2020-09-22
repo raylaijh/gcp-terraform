@@ -1,59 +1,14 @@
-import "tfplan"
-
-mandatory_labels = [
-  "ttl", 
-  "owner",
-]
-
-# Get an array of all resources of the given type (or an empty array).
-get_resources = func(type) {
-	if length(tfplan.module_paths else []) > 0 { # always true in the real tfplan import
-		return get_resources_all_modules(type)
-	} else { # fallback for tests
-		return get_resources_root_only(type)
-	}
+policy "gcp-cis-7.1-kubernetes-ensure-stackdriver-logging-is-set-to-enabled-on-kubernetes-engine-clusters" {
+   source = "https://raw.githubusercontent.com/hashicorp/terraform-foundational-policies-library/master/cis/gcp/kubernetes/>gcp-cis-7.1-kubernetes-ensure-stackdriver-logging-is-set-to-enabled-on-kubernetes-engine-clusters/gcp-cis-7.>1-kubernetes-ensure-stackdriver-logging-is-set-to-enabled-on-kubernetes-engine-clusters.sentinel"
+   enforcement_level = "advisory"
 }
 
-get_resources_root_only = func(type) {
-	resources = []
-	named_and_counted_resources = tfplan.resources[type] else {}
-	# Get resource bodies out of nested resource maps, from:
-	# {"name": {"0": {"applied": {...}, "diff": {...} }, "1": {...}}, "name": {...}}
-	# to:
-	# [{"applied": {...}, "diff": {...}}, {"applied": {...}, "diff": {...}}, ...]
-	for named_and_counted_resources as _, instances {
-		for instances as _, body {
-			append(resources, body)
-		}
-	}
-	return resources
+policy "gcp-cis-7.2-kubernetes-ensure-stackdriver-monitoring-is-set-to-enabled-on-kubernetes-engine-clusters" {
+   source = "https://raw.githubusercontent.com/hashicorp/terraform-foundational-policies-library/master/cis/gcp/kubernetes/>gcp-cis-7.2-kubernetes-ensure-stackdriver-monitoring-is-set-to-enabled-on-kubernetes-engine-clusters/gcp-cis-7.>2-kubernetes-ensure-stackdriver-monitoring-is-set-to-enabled-on-kubernetes-engine-clusters.sentinel"
+   enforcement_level = "advisory"
 }
 
-get_resources_all_modules = func(type) {
-	resources = []
-	for tfplan.module_paths as path {
-		named_and_counted_resources = tfplan.module(path).resources[type] else {}
-		# Get resource bodies out of nested resource maps, from:
-		# {"name": {"0": {"applied": {...}, "diff": {...} }, "1": {...}}, "name": {...}}
-		# to:
-		# [{"applied": {...}, "diff": {...}}, {"applied": {...}, "diff": {...}}, ...]
-		for named_and_counted_resources as _, instances {
-			for instances as _, body {
-				append(resources, body)
-			}
-		}
-	}
-	return resources
-}
-
-instance_labels = rule {
-	all get_resources("google_compute_instance") as r {
-    all mandatory_labels as t {
-      r.applied.labels contains t
-    }
-	}
-}
-
-main = rule {
-	(instance_labels) else true
+policy "gcp-cis-7.3-kubernetes-ensure-legacy-authorization-is-set-to-disabled-on-kubernetes-engine-clusters" {
+   source = "https://raw.githubusercontent.com/hashicorp/terraform-foundational-policies-library/master/cis/gcp/kubernetes/>gcp-cis-7.3-kubernetes-ensure-legacy-authorization-is-set-to-disabled-on-kubernetes-engine-clusters/gcp-cis-7.>3-kubernetes-ensure-legacy-authorization-is-set-to-disabled-on-kubernetes-engine-clusters.sentinel"
+   enforcement_level = "advisory"
 }
